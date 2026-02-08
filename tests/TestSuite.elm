@@ -8,6 +8,60 @@ import Test.Html.Query as Query
 import Test.Html.Selector exposing (containing, exactText, tag, text)
 
 
+add2Test : Test
+add2Test =
+    describe "Testing add2 function"
+        [ test "add2 2 3 should reduce to 2+3" <|
+            \_ ->
+                add2 2 3
+                    |> Expect.equal 5
+        , fuzz2 int int "add2 x y should reduce to x + y" <|
+            \x y ->
+                add2 x y
+                    |> Expect.equal (x + y)
+        ]
+
+
+add3Test : Test
+add3Test =
+    describe "Testing add3 function"
+        [ test "add3 2 3 -10 should reduce to -5" <|
+            \_ ->
+                add3 2 3 -10
+                    |> Expect.equal -5
+        , fuzz3 int int int "add3 x y z should reduce to x + y + z" <|
+            \x y z ->
+                add3 x y z
+                    |> Expect.equal (x + y + z)
+        ]
+
+
+calcTest : Test
+calcTest =
+    describe "Testing calc function"
+        [ test "calc 2 3 (+) should reduce to 5" <|
+            \_ ->
+                calc 2 3 (+)
+                    |> Expect.equal 5
+        , test "calc 2 3 (-) should reduce to -1" <|
+            \_ ->
+                calc 2 3 (-)
+                    |> Expect.equal -1
+        , fuzz2 int int "calc x y (+) should reduce to x + y" <|
+            \x y ->
+                calc x y (+)
+                    |> Expect.equal (x + y)
+        , fuzz2 int int "calc x y (-) should reduce to x - y" <|
+            \x y ->
+                calc x y (-)
+                    |> Expect.equal (x - y)
+        , fuzz2 int int "calc x y (//) should reduce to x // y" <|
+            \x y ->
+                calc x y (//)
+                    |> Expect.equal (x // y)
+        ]
+
+
 languageFuzzer :
     Fuzzer
         { name : String

@@ -35,6 +35,37 @@ elm-test
 - elm-review
 
 # Exercises
+## Simple exercises
+- Create a function "add2" that adds two integers
+```eml
+add2 : Int -> Int -> Int
+add2 int1 int2 =
+    -- Your definition here
+
+add2 2 3      -- Should reduce to => 5
+```
+- Create a function "add3" that adds three floats
+```eml
+add3 : Int -> Int -> Int -> Int
+add3 int1 int2 int3 =
+    -- Your definition here
+
+add3 2 3 -10      -- Should reduce to => -5
+```
+- Create a function "calc" that receives three inputs:
+- - An integer 
+- - A second integer
+- - A function with type (Int -> Int -> Int) 
+```eml
+calc : Int -> Int -> (Int -> Int -> Int) -> Int
+calc int1 int2 operator = 
+    -- Your definition here
+
+calc 2 3 (+)      -- Should reduce to => (+) 2 3 => 5
+calc 2 3 (-)      -- Should reduce to => (-) 2 3 => -1
+calc 5 2 (//)     -- Should reduce to => (//) 5 2 => 2
+```
+
 ## Records exercises
 1.0 Let's define a record for programming languages with:
 - name : String
