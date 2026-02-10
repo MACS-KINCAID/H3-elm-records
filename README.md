@@ -46,7 +46,7 @@ add2 2 3      -- Should reduce to => 5
 ```
 - Create a function "add3" that adds three floats
 ```eml
-add3 : Int -> Int -> Int -> Int
+add3 : Float -> Float -> Float -> Float
 add3 int1 int2 int3 =
     -- Your definition here
 

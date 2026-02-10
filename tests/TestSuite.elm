@@ -1,7 +1,7 @@
 module TestSuite exposing (..)
 
 import Expect exposing (Expectation)
-import Fuzz exposing (Fuzzer, int, list, string)
+import Fuzz exposing (Fuzzer, floatRange, int, list, string)
 import Helper exposing (..)
 import Test exposing (..)
 import Test.Html.Query as Query
@@ -29,10 +29,10 @@ add3Test =
             \_ ->
                 add3 2 3 -10
                     |> Expect.equal -5
-        , fuzz3 int int int "add3 x y z should reduce to x + y + z" <|
+        , fuzz3 (floatRange -1.0e12 1.0e12) (floatRange -1.0e12 1.0e12) (floatRange -1.0e12 1.0e12) "add3 x y z should reduce to x + y + z" <|
             \x y z ->
                 add3 x y z
-                    |> Expect.equal (x + y + z)
+                    |> Expect.within (Expect.Absolute 0.000000000001) (x + y + z)
         ]
 
 
